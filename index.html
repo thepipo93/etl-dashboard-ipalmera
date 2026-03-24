@@ -30,11 +30,6 @@
   .section-num{font-size:11px;font-weight:700;color:#BDC3C7;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
   .section-title{font-size:15px;font-weight:700;color:#2C3E50;margin-bottom:4px;line-height:1.4}
   .section-sub{font-size:12px;color:#95A5A6;margin-bottom:18px;line-height:1.5}
-  .hallazgo{background:#EBF5FB;border-left:3px solid #1B4F72;padding:10px 14px;border-radius:0 4px 4px 0;margin-top:14px;font-size:12px;line-height:1.6}
-  .hallazgo.verde{background:#EAFAF1;border-left-color:#27AE60}
-  .hallazgo.amarillo{background:#FEF9E7;border-left-color:#F39C12}
-  .hallazgo.rojo{background:#FDEDEC;border-left-color:#E74C3C}
-  .nota-parcial{background:#FEF9E7;border:1px dashed #F39C12;border-radius:4px;padding:6px 10px;font-size:11px;color:#B7950B;margin-top:8px}
 
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
   .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
@@ -123,11 +118,9 @@
   <div class="grid2">
     <div>
       <canvas id="chCanalInv"></canvas>
-      <div class="hallazgo">Google Ads representó el 81% del presupuesto total y tuvo acceso a más herramientas de segmentación. Meta funcionó principalmente para llevar personas al sitio web (tráfico), no para cerrar ventas directamente.</div>
     </div>
     <div>
       <canvas id="chGadsCanal"></canvas>
-      <div class="hallazgo verde">Performance Max usó solo el 15% del presupuesto de Google ($6,575) pero generó 4,825 conversiones al precio más bajo ($1.36 c/u). Search gastó el 75% y generó 4,179 conversiones a $7.61 c/u. Display usó 5% del presupuesto y generó el resultado más bajo (57 conversiones a $34.63 c/u).</div>
     </div>
   </div>
 </div>
@@ -135,16 +128,14 @@
 <!-- SECCIÓN 2: INVERSIÓN MENSUAL -->
 <div class="section">
   <div class="section-num">Sección 2 — Comportamiento durante el año</div>
-  <div class="section-title">La inversión fluctuó entre $2,143 y $6,413 según el mes — sin una estrategia clara de estacionalidad visible en los datos</div>
+  <div class="section-title">La inversión fluctuó entre $2,143 y $6,413 según el mes — sin una relación directa entre meses de alta inversión y meses de más ventas</div>
   <div class="section-sub">Ver cómo varió el presupuesto mes a mes permite identificar si la empresa apostó más en los momentos correctos o si la inversión siguió otro criterio.</div>
   <div class="grid2">
     <div>
       <canvas id="chInvMes"></canvas>
-      <div class="hallazgo amarillo">Abril ($6,286) y Diciembre ($6,413) fueron los meses de mayor inversión. Septiembre ($2,247) y Octubre ($2,143) los de menor inversión — paradójicamente, esos meses tuvieron el mejor retorno (mayor tráfico web y menor costo por póliza).</div>
     </div>
     <div>
       <canvas id="chPolizasMes"></canvas>
-      <div class="hallazgo">El número de pólizas vendidas fue relativamente estable: entre 69 (noviembre) y 107 (marzo). No se observa una relación directa entre meses de alta inversión y meses de más ventas — lo que sugiere que otros factores (estacionalidad, orgánico) también influyen.</div>
     </div>
   </div>
 </div>
@@ -153,15 +144,13 @@
 <div class="section">
   <div class="section-num">Sección 3 — Ventas y productos</div>
   <div class="section-title">El 96% de las pólizas son Auto por Kilómetro, pero Auto Tradicional vale 3.3 veces más por póliza</div>
-  <div class="section-sub">Cliente A vende dos tipos de seguro: Auto por Kilómetro (pago según kilómetros recorridos, precio accesible) y Auto Tradicional (cobertura convencional, precio mayor). Los datos de ventas incluyen número de póliza, producto, fecha y monto en Quetzales, convertidos a USD.</div>
+  <div class="section-sub">Cliente A vende dos tipos de seguro: Auto por Kilómetro (pago según kilómetros recorridos, precio accesible) y Auto Tradicional (cobertura convencional, precio mayor). Los datos de ventas incluyen número de póliza, producto, fecha de venta y monto en Quetzales, convertidos a USD.</div>
   <div class="grid2">
     <div>
       <canvas id="chProductos"></canvas>
-      <div class="hallazgo">Auto por Kilómetro: 967 pólizas · $168 promedio · $162,784 en ventas. Auto Tradicional: 44 pólizas · $560 promedio · $24,629 en ventas. Vender una póliza Tradicional equivale en valor a vender 3.3 pólizas KM.</div>
     </div>
     <div>
       <canvas id="chRevenueMes"></canvas>
-      <div class="hallazgo verde">Las ventas superaron la inversión publicitaria en todos los meses del año. Marzo fue el mes de mayor revenue ($21,590). La diferencia entre la barra verde (ventas) y la barra azul (inversión) representa el margen bruto antes de otros costos operativos.</div>
     </div>
   </div>
   <div class="grid3" style="margin-top:16px">
@@ -174,11 +163,9 @@
 <!-- SECCIÓN 4: TRÁFICO WEB -->
 <div class="section">
   <div class="section-num">Sección 4 — Tráfico web (Google Analytics 4)</div>
-  <div class="section-title">El sitio recibió 359,124 visitas en 2025 — el tráfico de septiembre a noviembre duplicó al del primer semestre</div>
-  <div class="section-sub">Google Analytics 4 registra cada visita al sitio web. Permite ver si la publicidad realmente llevó personas al sitio y en qué meses hubo más actividad. El sistema se activó el 23 de enero — los datos de ese mes son parciales (9 días faltantes).</div>
+  <div class="section-title">El sitio recibió 452,146 visitas en 2025 — el tráfico de septiembre en adelante triplicó al del primer semestre</div>
+  <div class="section-sub">Google Analytics 4 registra cada visita al sitio web. Permite ver si la publicidad realmente llevó personas al sitio y en qué meses hubo más actividad. Los datos de enero comienzan el día 23 (el sistema se activó ese día).</div>
   <canvas id="chGA4"></canvas>
-  <div class="nota-parcial">⚠ Diciembre: datos del 1 al 15 únicamente (49,788 sesiones en 15 días). Si la tendencia continúa, el mes completo superaría las 90,000 sesiones — el más alto del año.</div>
-  <div class="hallazgo" style="margin-top:10px">Septiembre (46,403), Octubre (56,256) y Noviembre (58,210) fueron los meses de mayor tráfico — coinciden con los períodos de menor inversión publicitaria, lo que sugiere que el tráfico orgánico y de búsqueda ganó peso en el segundo semestre.</div>
 </div>
 
 <!-- SECCIÓN 5: BÚSQUEDAS ORGÁNICAS -->
@@ -189,7 +176,6 @@
   <div class="grid2">
     <div>
       <canvas id="chGSC"></canvas>
-      <div class="hallazgo">Marzo fue el mes con más clics orgánicos (843) y más impresiones (11,284) — coincide con el mes de mayor número de pólizas vendidas (107). Diciembre muestra el mayor número de impresiones (7,754) pero pocos clics, lo que indica que el sitio aparece en búsquedas pero el contenido de esos meses no convierte bien.</div>
     </div>
     <div style="display:flex;flex-direction:column;justify-content:center;gap:12px">
       <div class="mini-stat"><div class="mini-stat-val">58,978</div><div class="mini-stat-label">Apariciones en resultados de Google</div></div>
@@ -204,7 +190,7 @@
 <div class="section">
   <div class="section-num">Sección 6 — Qué funcionó, qué no funcionó y dónde invertir en 2026</div>
   <div class="section-title">Performance Max fue la pieza más eficiente del portafolio — las campañas de conversión en Meta no tuvieron trazabilidad hacia ventas reales</div>
-  <div class="section-sub">El análisis consolida los datos de las 5 fuentes para identificar qué piezas de la estrategia deben mantenerse, cuáles reformularse y dónde existe oportunidad para 2026. Esta es la lectura descriptiva de los datos — no hay modelos predictivos.</div>
+  <div class="section-sub">El análisis consolida los datos de las 5 fuentes para identificar qué piezas de la estrategia deben mantenerse, cuáles reformularse y dónde existe oportunidad para 2026.</div>
 
   <div class="verdict-grid">
     <div class="verdict-card funciono">
@@ -251,9 +237,6 @@
       <tr><td><strong>Ventas / Pólizas</strong></td><td>1,011 filas</td><td>6</td><td>CSV manual</td><td>Número de póliza, producto, fecha de venta, monto en Quetzales</td></tr>
     </tbody>
   </table>
-  <div class="hallazgo verde" style="margin-top:14px">
-    <strong>Resultado del proceso:</strong> 9,417 registros de 5 fuentes → Master Table de 363 filas × 16 columnas (una fila por día, todos los canales en la misma tabla). Tiempo de ejecución: 0.1 segundos. Conversión de moneda: ventas en QTZ ÷ 7.7 = USD aplicada automáticamente en transform.py.
-  </div>
 </div>
 
 </div>
@@ -324,23 +307,21 @@ new Chart(document.getElementById('chRevenueMes'),{type:'bar',data:{
 },options:{plugins:{legend:{position:'top',labels:{font:{size:11}}}},
   scales:{y:{beginAtZero:true,grid:{color:'#eee'},ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'K'}},x:{grid:{display:false}}}}});
 
-// ── 4. GA4 sesiones — datos REALES del CSV ──
-// Fuente: ga4_2025.csv agrupado por mes. Dic = solo 15 días (parcial)
-const ga4S=[2525,42509,22467,41037,12157,10651,10316,6505,46403,56256,58210,49788];
+// ── 4. GA4 sesiones — datos reales del CSV + BigQuery (dic completo via BigQuery) ──
+const ga4S=[2525,42509,22467,41037,12157,10651,10316,6505,46403,56256,58210,143110];
 new Chart(document.getElementById('chGA4'),{type:'bar',data:{
-  labels:['Ene*','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic**'],
+  labels:ML,
   datasets:[{label:'Sesiones web',data:ga4S,
-    backgroundColor:['#BDC3C7', ...ga4S.slice(1,11).map(v=>v>40000?P:v>20000?L:G+'99'),'#F39C12'],
+    backgroundColor:ga4S.map((v,i)=>i===0?'#BDC3C7':v>40000?P:v>20000?L:G+'99'),
     barPercentage:.7}]
 },options:{plugins:{legend:{display:false},
   tooltip:{callbacks:{label:d=>{
     if(d.dataIndex===0) return d.raw.toLocaleString()+' sesiones (desde el 23 enero)';
-    if(d.dataIndex===11) return d.raw.toLocaleString()+' sesiones (solo hasta el 15 dic)';
     return d.raw.toLocaleString()+' sesiones';
   }}}},
   scales:{y:{beginAtZero:true,grid:{color:'#eee'},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}},x:{grid:{display:false}}}}});
 
-// ── 5. GSC — datos REALES del CSV ──
+// ── 5. GSC — datos reales del CSV ──
 // Fuente: gsc_chart_2025.csv. Total año: 2,668 clics | 58,978 impresiones
 const gscClics=[6,130,843,169,118,146,190,164,394,227,159,122];
 const gscImpr=[144,3529,11284,4114,5056,4596,3595,3817,4194,4483,6412,7754];
