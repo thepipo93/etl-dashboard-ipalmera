@@ -171,7 +171,7 @@
 <!-- SECCIÓN 4: TRÁFICO WEB -->
 <div class="section">
   <div class="section-num">Sección 4 — Tráfico web (Google Analytics 4)</div>
-  <div class="section-title">El sitio recibió 452,146 visitas en 2025 — el tráfico de septiembre en adelante triplicó al del primer semestre</div>
+  <div class="section-title">El sitio recibió 452,625 visitas en 2025 — el tráfico de septiembre en adelante triplicó al del primer semestre</div>
   <div class="section-sub">Google Analytics 4 registra cada visita al sitio web. Permite ver si la publicidad realmente llevó personas al sitio y en qué meses hubo más actividad. Los datos de enero comienzan el día 23 (el sistema se activó ese día).</div>
   <canvas id="chGA4"></canvas>
   <p class="chart-note"><em>Nota.</em> El segundo semestre (julio–diciembre) concentró el 72% de todas las visitas del año con menor inversión publicitaria que el primero — señal de que el canal orgánico y de búsqueda ganó peso progresivamente a lo largo del año.</p>
@@ -318,7 +318,7 @@ new Chart(document.getElementById('chRevenueMes'),{type:'bar',data:{
   scales:{y:{beginAtZero:true,grid:{color:'#eee'},ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'K'}},x:{grid:{display:false}}}}});
 
 // ── 4. GA4 sesiones — datos reales del CSV + BigQuery (dic completo via BigQuery) ──
-const ga4S=[2525,42509,22467,41037,12157,10651,10316,6505,46403,56256,58210,143110];
+const ga4S=[2525,42509,22467,41037,12157,10651,10316,6505,46403,56256,58210,143589];
 new Chart(document.getElementById('chGA4'),{type:'bar',data:{
   labels:ML,
   datasets:[{label:'Sesiones web',data:ga4S,
