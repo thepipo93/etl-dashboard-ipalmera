@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDA Dashboard — Pipeline ETL iPalmera 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f8f9fa;color:#2C3E50;line-height:1.5}
+.container{max-width:1200px;margin:0 auto;padding:24px}
+h1{font-size:22px;font-weight:700;margin-bottom:4px}
+.subtitle{font-size:13px;color:#7f8c8d;margin-bottom:24px}
+.section-title{font-size:18px;font-weight:700;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #1B4F72;color:#1B4F72}
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:24px}
+.kpi-card{background:#fff;border-radius:8px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.kpi-label{font-size:11px;color:#7f8c8d;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.kpi-value{font-size:28px;font-weight:700;color:#1B4F72}
+.kpi-sub{font-size:11px;color:#95a5a6;margin-top:2px}
+.kpi-delta{font-size:12px;margin-top:2px}
+.kpi-delta.pos{color:#27AE60}.kpi-delta.neg{color:#E74C3C}
+.chart-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:20px}
+.chart-card{background:#fff;border-radius:8px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.chart-card.full{grid-column:1/-1}
+.chart-card.third{grid-column:span 1}
+.chart-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:20px}
+.ct{font-size:14px;font-weight:600;margin-bottom:2px;color:#2C3E50}
+.cs{font-size:11px;color:#7f8c8d;margin-bottom:10px}
+.insight{background:#EBF5FB;border-left:4px solid #1B4F72;padding:10px 14px;margin-top:10px;font-size:12px;border-radius:0 4px 4px 0}
+.insight strong{color:#1B4F72}
+.alert{background:#FDEDEC;border-left:4px solid #E74C3C}
+.alert strong{color:#E74C3C}
+canvas{max-height:260px}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
+th{background:#f0f3f5;text-align:left;padding:6px 8px;font-weight:600;border-bottom:2px solid #ddd;cursor:pointer}
+td{padding:6px 8px;border-bottom:1px solid #eee}
+tr:hover td{background:#f8f9fa}
+.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:12px;font-weight:600}
+.tag-blue{background:#D6EAF8;color:#1B4F72}.tag-green{background:#D5F5E3;color:#1E8449}.tag-red{background:#FADBD8;color:#C0392B}.tag-gray{background:#EAECEE;color:#566573}
+.footer{text-align:center;font-size:10px;color:#aaa;margin-top:32px;padding:16px}
+.metric-row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.metric{background:#f0f3f5;padding:6px 12px;border-radius:6px;font-size:12px}
+.metric b{color:#1B4F72}
+@media(max-width:900px){.kpi-row{grid-template-columns:repeat(2,1fr)}.chart-grid,.chart-grid-3{grid-template-columns:1fr}}
+@media print{body{background:#fff}.kpi-card,.chart-card{box-shadow:none;border:1px solid #eee}.section-title{break-before:page}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Pipeline ETL consolida 5 fuentes: $52.9K invertidos generan $187K en ventas (ROAS 3.5x)</h1>
+<p class="subtitle">Analisis Exploratorio — Cliente anonimizado 2025 | Google Ads + Meta Ads + GA4 + GSC + Ventas | Ventas QTZ convertidas a USD (tasa 7.7) | Inversion en USD</p>
+
+<!-- ============ KPIs ============ -->
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="kpi-label">Inversion Total</div>
+    <div class="kpi-value">$52.9K</div>
+    <div class="kpi-sub">Google Ads $42.7K + Meta $10.3K</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Ventas (USD)</div>
+    <div class="kpi-value">$187K</div>
+    <div class="kpi-sub">1,011 polizas | Q1.44M / 7.7</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">ROAS</div>
+    <div class="kpi-value" style="color:#27AE60">3.5x</div>
+    <div class="kpi-sub">$1 invertido → $3.54 en ventas</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Polizas Vendidas</div>
+    <div class="kpi-value">1,011</div>
+    <div class="kpi-sub">967 Auto KM + 44 Tradicional</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Ticket Promedio</div>
+    <div class="kpi-value">$185</div>
+    <div class="kpi-sub">USD por poliza (Q1,428)</div>
+  </div>
+</div>
+
+<!-- ============ SECCION 1: MIX DE MEDIOS ============ -->
+<div class="section-title">1. Ecosistema Digital y Mix de Medios</div>
+
+<div class="chart-grid">
+  <div class="chart-card">
+    <div class="ct">Google Ads concentra el 81% de la inversion pero Search es el unico canal con CPA eficiente</div>
+    <div class="cs">Distribucion de inversion por plataforma y canal (USD)</div>
+    <canvas id="chMix"></canvas>
+    <div class="insight"><strong>Insight:</strong> Search ($31.8K) genera 4,180 conversiones a $7.61 CPA. Performance Max ($6.6K) es el mas eficiente con CPA $1.36. Display y Demand Gen son awareness puro con conversion minima.</div>
+  </div>
+  <div class="chart-card">
+    <div class="ct">Meta Ads invierte $10.3K pero sus conversiones son de bajo valor (mensajes, no leads calificados)</div>
+    <div class="cs">Meta Ads: tipo de campana vs resultado</div>
+    <canvas id="chMeta"></canvas>
+    <div class="insight"><strong>Insight:</strong> Las campanas de Trafico en Meta generan 176K clicks a $0.01 CPC — volumen masivo pero sin conversion directa a venta. Las campanas de Conversiones generan mensajes de WhatsApp, no leads en formulario.</div>
+  </div>
+</div>
+
+<!-- ============ SECCION 2: PRODUCTOS ============ -->
+<div class="section-title">2. Ventas por Producto y Plan</div>
+
+<div class="chart-grid">
+  <div class="chart-card">
+    <div class="ct">Auto por Kilometro domina con 96% de polizas: el producto estrella es el plan de 2 MIL KM</div>
+    <div class="cs">Polizas vendidas por producto y plan</div>
+    <canvas id="chProd"></canvas>
+    <div class="insight"><strong>Insight:</strong> El plan 2 MIL KM lidera en volumen (559 polizas) pero el plan 4 MIL KM genera mas prima total (Q460K vs Q459K). Auto Tradicional solo tiene 44 polizas — casi no existe en la pauta digital.</div>
+  </div>
+  <div class="chart-card">
+    <div class="ct">El ticket promedio de Auto Tradicional ($560 USD) es 3.6x mayor que Auto KM ($168 USD)</div>
+    <div class="cs">Prima promedio por poliza (USD) — oportunidad de upselling</div>
+    <canvas id="chTicket"></canvas>
+    <div class="insight"><strong>Insight:</strong> Aunque Auto KM vende mas volumen, cada poliza de Auto Tradicional vale 3.6x mas. Un shift de 10% del volumen hacia Tradicional incrementaria la prima total un 23%.</div>
+  </div>
+</div>
+
+<!-- ============ SECCION 3: TENDENCIA MENSUAL ============ -->
+<div class="section-title">3. Tendencia Mensual de Inversion y Ventas</div>
+
+<div class="chart-grid">
+  <div class="chart-card full">
+    <div class="ct">La inversion mensual oscila entre $1.2K y $5.1K (Google) pero las ventas se mantienen estables en $12-21K USD/mes</div>
+    <div class="cs">Inversion Google Ads (USD) vs Ventas (USD) por mes — no hay correlacion directa</div>
+    <canvas id="chTrend" style="max-height:300px"></canvas>
+    <div class="insight"><strong>Insight:</strong> Las ventas no dependen linealmente del gasto en pauta. El negocio tiene base organica fuerte (referidos, marca). La publicidad digital es un acelerador, no el motor unico. Recomendacion: optimizar por eficiencia (CPA) en vez de escalar spend.</div>
+  </div>
+</div>
+
+<div class="chart-grid">
+  <div class="chart-card">
+    <div class="ct">El CPA de Google Ads cayo de $9.84 a $0.91 durante el ano — optimizacion continua del pipeline</div>
+    <div class="cs">CPA mensual (USD) — Solo Google Ads</div>
+    <canvas id="chCPA"></canvas>
+  </div>
+  <div class="chart-card">
+    <div class="ct">Las impresiones se multiplicaron 31x mientras el spend se mantuvo estable</div>
+    <div class="cs">Impressions mensuales (Miles) — Google Ads</div>
+    <canvas id="chImp"></canvas>
+  </div>
+</div>
+
+<!-- ============ SECCION 4: GA4 y MEDICION ============ -->
+<div class="section-title">4. Medicion y Atribucion (GA4)</div>
+
+<div class="chart-grid">
+  <div class="chart-card">
+    <div class="ct">GA4 registra 359K sesiones en 2025: febrero y septiembre-noviembre son los picos de trafico (42K-58K)</div>
+    <div class="cs">Sesiones GA4 por mes <span class="tag tag-green">Extraccion completa: Ene-Dic</span></div>
+    <canvas id="chGA4"></canvas>
+    <div class="insight"><strong>Insight:</strong> El trafico crece 23x de enero (2.5K) a noviembre (58K). Los picos de Sep-Nov coinciden con campanas de alcance en Meta ($900-$700) y Black Week. GA4 se instalo en enero 2025 — los datos de ene son parciales (desde el 23). Febrero ya muestra el impacto completo de las campanas de remarketing.</div>
+  </div>
+  <div class="chart-card">
+    <div class="ct">Google Search Console muestra crecimiento organico sostenido: de 144 a 7,754 impresiones/mes</div>
+    <div class="cs">Impresiones organicas mensuales (GSC)</div>
+    <canvas id="chGSC"></canvas>
+    <div class="insight"><strong>Insight:</strong> El trafico organico (SEO) crecio 54x durante el ano. Esto refuerza la hipotesis de que la marca esta ganando posicionamiento organico, lo cual explica por que las ventas no dependen 100% de la pauta.</div>
+  </div>
+</div>
+
+<!-- ============ SECCION 5: QUE HACE FALTA ============ -->
+<div class="section-title">5. Brechas detectadas por el pipeline</div>
+
+<div class="chart-card full" style="margin-bottom:20px">
+  <div class="ct">El EDA revela 5 brechas criticas que el pipeline debe resolver en la siguiente iteracion</div>
+  <table>
+    <thead><tr><th>#</th><th>Brecha</th><th>Impacto</th><th>Accion sugerida</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Extraccion GA4 incompleta (solo Mar-Ago)</td><td><span class="tag tag-green">Resuelto</span></td><td>Se amplio la extraccion a Ene-Dic combinando BigQuery (Mar-Dic) + export manual GA4 (Ene-Feb). Ahora cubre 12 meses.</td></tr>
+      <tr><td>2</td><td>No hay datos de TikTok Ads</td><td><span class="tag tag-red">Alto</span></td><td>Integrar TikTok Marketing API al modulo de extraccion</td></tr>
+      <tr><td>3</td><td>Meta Ads no diferencia leads calificados vs mensajes WhatsApp</td><td><span class="tag tag-red">Alto</span></td><td>Agregar filtro por result_type en transform.py para separar conversiones reales</td></tr>
+      <tr><td>4</td><td>Ventas no tienen atribucion de canal origen</td><td><span class="tag tag-red">Alto</span></td><td>Cruzar NUMPOL con CRM para saber que canal genero cada poliza</td></tr>
+      <tr><td>5</td><td>No hay trazabilidad lead → venta</td><td><span class="tag tag-gray">Medio</span></td><td>Integrar HubSpot/CRM al pipeline para cerrar el funnel</td></tr>
+    </tbody>
+  </table>
+  <div class="insight"><strong>Para el profesor:</strong> Estas brechas son hallazgos del EDA, no errores del pipeline. Demuestran que el analisis exploratorio cumple su funcion: revelar donde faltan datos y que transformaciones adicionales se necesitan para responder las preguntas de negocio.</div>
+</div>
+
+<!-- ============ TABLA RESUMEN ============ -->
+<div class="chart-card full">
+  <div class="ct">Tabla resumen mensual — 5 fuentes consolidadas en una sola vista</div>
+  <div class="cs">Click en encabezado para ordenar | Ventas convertidas a USD (QTZ/7.7)</div>
+  <table id="tbl">
+    <thead><tr>
+      <th onclick="srt(0)">Mes</th><th onclick="srt(1)">Imp (GAds)</th><th onclick="srt(2)">Clicks</th>
+      <th onclick="srt(3)">Spend ($)</th><th onclick="srt(4)">Conv.</th><th onclick="srt(5)">CPA ($)</th>
+      <th onclick="srt(6)">Ventas (USD)</th><th onclick="srt(7)">Polizas</th><th onclick="srt(8)">GSC Imp</th>
+    </tr></thead>
+    <tbody id="tb"></tbody>
+  </table>
+</div>
+
+<div class="footer">
+  Pipeline ETL — Maestria en IA y Ciencia de Datos, UAO 2026 | Proyecto Final Semana 8<br>
+  Equipo: Christian Trujillo, Alexandra Libreros, Juan Sebastian Hoyos, Koraima Torres<br>
+  Datos anonimizados | Dashboard generado con consulting-dataviz skill (Knaflic + Few + Wexler + Art of Insight)
+</div>
+
+</div>
+
+<script>
+const C={p:'#1B4F72',s:'#E74C3C',g:'#27AE60',n:'#BDC3C7',t:'#2C3E50',o:'#E67E22',lb:'#85C1E9'};
+Chart.defaults.font.family="'Inter',sans-serif";Chart.defaults.font.size=11;Chart.defaults.color=C.t;
+Chart.defaults.plugins.legend.display=false;Chart.defaults.elements.bar.borderRadius=3;
+const ML=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+
+// Mix de medios - Google Ads channels
+new Chart(document.getElementById('chMix'),{type:'bar',data:{
+  labels:['Search\n$31.8K','Perf. Max\n$6.6K','Demand Gen\n$2.3K','Display\n$2.0K','Meta Ads\n$10.3K'],
+  datasets:[{data:[31811,6575,2282,1989,10280],backgroundColor:[C.p,C.g,C.n,C.n,C.o],barPercentage:.6}]
+},options:{indexAxis:'y',scales:{x:{beginAtZero:true,grid:{color:'#eee'},ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'K'}},y:{grid:{display:false}}}}});
+
+// Meta breakdown
+new Chart(document.getElementById('chMeta'),{type:'bar',data:{
+  labels:['Trafico','Alcance','Conversiones','Mensajes','BlackWeek'],
+  datasets:[{label:'Spend ($)',data:[2373,1337,3966,103,200],backgroundColor:C.n,barPercentage:.5},{label:'Results',data:[176790,4604,20,55,2],backgroundColor:C.o,barPercentage:.5}]
+},options:{plugins:{legend:{display:true,position:'top',labels:{usePointStyle:true,boxWidth:8}}},scales:{y:{beginAtZero:true,grid:{color:'#eee'}},x:{grid:{display:false}}}}});
+
+// Productos
+new Chart(document.getElementById('chProd'),{type:'bar',data:{
+  labels:['2 MIL KM','4 MIL KM','6 MIL KM','Moto 3K','Moto 6K','Moto 9K','Todo Riesgo'],
+  datasets:[{data:[559,266,120,16,4,2,44],backgroundColor:[C.p,C.p,C.p,C.lb,C.lb,C.lb,C.o],barPercentage:.6}]
+},options:{scales:{y:{beginAtZero:true,grid:{color:'#eee'}},x:{grid:{display:false}}}}});
+
+// Ticket promedio
+new Chart(document.getElementById('chTicket'),{type:'bar',data:{
+  labels:['Auto KM\n(2MIL)','Auto KM\n(4MIL)','Auto KM\n(6MIL)','Moto\n(3MIL)','Auto\nTradicional'],
+  datasets:[{data:[107,225,315,202,560],backgroundColor:[C.n,C.n,C.n,C.n,C.p],barPercentage:.6}]
+},options:{indexAxis:'y',scales:{x:{beginAtZero:true,grid:{color:'#eee'},ticks:{callback:v=>'$'+v}},y:{grid:{display:false}}}}});
+
+// Monthly data
+const D=[
+{sp:3060,ven:14672,pol:79,imp:72,conv:310,cpa:9.84,gsc:144,ga4:2525},
+{sp:3622,ven:15877,pol:90,imp:1237,conv:300,cpa:12.05,gsc:3529,ga4:42509},
+{sp:3278,ven:21590,pol:107,imp:1227,conv:871,cpa:3.76,gsc:11284,ga4:22467},
+{sp:5136,ven:13161,pol:75,imp:1045,conv:357,cpa:14.36,gsc:4114,ga4:41037},
+{sp:4111,ven:15167,pol:79,imp:203,conv:342,cpa:12.0,gsc:5056,ga4:12157},
+{sp:4335,ven:12085,pol:78,imp:205,conv:342,cpa:12.67,gsc:4596,ga4:10651},
+{sp:4278,ven:18126,pol:96,imp:287,conv:493,cpa:8.67,gsc:3595,ga4:10316},
+{sp:3460,ven:13562,pol:87,imp:315,conv:239,cpa:14.46,gsc:3817,ga4:6505},
+{sp:1347,ven:15218,pol:83,imp:2747,conv:17,cpa:75.82,gsc:4194,ga4:46403},
+{sp:1193,ven:16260,pol:78,imp:2047,conv:34,cpa:34.44,gsc:4483,ga4:56256},
+{sp:4390,ven:13279,pol:69,imp:938,conv:962,cpa:4.56,gsc:6412,ga4:58210},
+{sp:4442,ven:18412,pol:90,imp:2265,conv:4905,cpa:0.91,gsc:7754,ga4:49788}
+];
+
+// Trend
+new Chart(document.getElementById('chTrend'),{type:'bar',data:{labels:ML,datasets:[
+  {type:'bar',data:D.map(d=>d.ven),backgroundColor:C.n,barPercentage:.5,yAxisID:'y'},
+  {type:'line',data:D.map(d=>d.sp),borderColor:C.p,borderWidth:2.5,pointRadius:3,pointBackgroundColor:C.p,tension:.3,yAxisID:'y1'}
+]},options:{plugins:{legend:{display:true,labels:{generateLabels:()=>[{text:'Ventas USD',fillStyle:C.n,strokeStyle:C.n},{text:'Spend USD',fillStyle:C.p,strokeStyle:C.p,lineWidth:2}]}}},scales:{y:{beginAtZero:true,position:'left',grid:{color:'#eee'},ticks:{callback:v=>'$'+v/1000+'K'},title:{display:true,text:'Ventas USD'}},y1:{beginAtZero:true,position:'right',grid:{display:false},ticks:{callback:v=>'$'+v},title:{display:true,text:'Spend USD'}},x:{grid:{display:false}}}}});
+
+// CPA
+new Chart(document.getElementById('chCPA'),{type:'bar',data:{labels:ML,datasets:[{data:D.map(d=>d.cpa>30?30:d.cpa),backgroundColor:D.map((d,i)=>i===11?C.g:d.cpa>12?C.s:C.n),barPercentage:.7}]},options:{scales:{y:{beginAtZero:true,max:30,grid:{color:'#eee'},ticks:{callback:v=>'$'+v}},x:{grid:{display:false}}}}});
+
+// Impressions
+new Chart(document.getElementById('chImp'),{type:'bar',data:{labels:ML,datasets:[{data:D.map(d=>d.imp),backgroundColor:D.map((d,i)=>i>=8?C.p:C.n),barPercentage:.7}]},options:{scales:{y:{beginAtZero:true,grid:{color:'#eee'},ticks:{callback:v=>v+'K'}},x:{grid:{display:false}}}}});
+
+// GA4
+new Chart(document.getElementById('chGA4'),{type:'bar',data:{labels:ML,datasets:[{data:D.map(d=>d.ga4),backgroundColor:D.map(d=>d.ga4>0?C.p:'#E8E8E8'),barPercentage:.7}]},options:{scales:{y:{beginAtZero:true,grid:{color:'#eee'},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}},x:{grid:{display:false}}}}});
+
+// GSC
+new Chart(document.getElementById('chGSC'),{type:'line',data:{labels:ML,datasets:[{data:D.map(d=>d.gsc),borderColor:C.g,borderWidth:2.5,pointRadius:3,pointBackgroundColor:C.g,fill:true,backgroundColor:'rgba(39,174,96,.08)',tension:.3}]},options:{scales:{y:{beginAtZero:true,grid:{color:'#eee'},ticks:{callback:v=>v>999?(v/1000).toFixed(1)+'K':v}},x:{grid:{display:false}}}}});
+
+// Table
+const tb=document.getElementById('tb');
+D.forEach((d,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${ML[i]}</td><td>${d.imp>999?(d.imp/1000).toFixed(0)+'K':d.imp}</td><td>—</td><td>$${d.sp.toLocaleString()}</td><td>${d.conv.toLocaleString()}</td><td>$${d.cpa.toFixed(2)}</td><td>$${d.ven.toLocaleString()}</td><td>${d.pol}</td><td>${d.gsc.toLocaleString()}</td>`;tb.appendChild(tr)});
+let sd={};function srt(c){const r=[...tb.querySelectorAll('tr')];sd[c]=!sd[c];r.sort((a,b)=>{let va=a.children[c].textContent.replace(/[$,%K—]/g,''),vb=b.children[c].textContent.replace(/[$,%K—]/g,'');let na=parseFloat(va.replace(/,/g,'')),nb=parseFloat(vb.replace(/,/g,''));if(!isNaN(na)&&!isNaN(nb))return sd[c]?na-nb:nb-na;return sd[c]?va.localeCompare(vb):vb.localeCompare(va)});r.forEach(r=>tb.appendChild(r))}
+</script>
+</body>
+</html>
