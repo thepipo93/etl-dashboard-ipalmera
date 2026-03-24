@@ -59,6 +59,8 @@
   td{padding:8px 10px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
   tr:hover td{background:#FAFAFA}
 
+  .chart-note{font-size:11px;color:#7F8C8D;margin-top:8px;line-height:1.6}
+
   .footer{text-align:center;font-size:11px;color:#BDC3C7;padding:16px;margin-top:6px}
 
   @media(max-width:700px){
@@ -78,7 +80,7 @@
 
 <!-- CONTEXTO -->
 <div class="context-box">
-  <strong>¿Qué es esto?</strong> Cliente A es una empresa de seguros de vehículos en Guatemala. En 2025 invirtió en publicidad digital en Google y Meta (Facebook/Instagram). Este análisis une por primera vez los datos de 5 sistemas distintos que antes vivían separados: <em>¿cuánto se invirtió? → ¿cuánta gente llegó al sitio? → ¿cuántos seguros se vendieron?</em> El pipeline ETL construido en Python extrae, limpia y consolida estas 5 fuentes automáticamente en 0.1 segundos.
+  Cliente A es una empresa de seguros de vehículos en Guatemala. En 2025 invirtió en publicidad digital en Google y Meta (Facebook/Instagram). Este análisis une por primera vez los datos de 5 sistemas distintos que antes vivían separados: <em>¿cuánto se invirtió? → ¿cuánta gente llegó al sitio? → ¿cuántos seguros se vendieron?</em> El pipeline ETL construido en Python extrae, limpia y consolida estas 5 fuentes automáticamente en 0.1 segundos.
 </div>
 
 <!-- KPIs -->
@@ -118,9 +120,11 @@
   <div class="grid2">
     <div>
       <canvas id="chCanalInv"></canvas>
+      <p class="chart-note"><em>Nota.</em> Meta Ads representa el 19% del presupuesto pero no tiene trazabilidad directa hacia pólizas vendidas — su contribución a ventas no puede confirmarse con los datos actuales.</p>
     </div>
     <div>
       <canvas id="chGadsCanal"></canvas>
+      <p class="chart-note"><em>Nota.</em> Performance Max logró el menor costo por conversión con solo el 15% del presupuesto de Google; Display gastó una proporción similar y costó 25 veces más por cada conversión obtenida.</p>
     </div>
   </div>
 </div>
@@ -133,9 +137,11 @@
   <div class="grid2">
     <div>
       <canvas id="chInvMes"></canvas>
+      <p class="chart-note"><em>Nota.</em> Septiembre y octubre tuvieron la menor inversión del año ($2,247 y $2,143) y al mismo tiempo el mayor tráfico web — lo que sugiere que el tráfico orgánico compensó la reducción de pauta en esos meses.</p>
     </div>
     <div>
       <canvas id="chPolizasMes"></canvas>
+      <p class="chart-note"><em>Nota.</em> La diferencia entre el mes más bajo (noviembre, 69 pólizas) y el más alto (marzo, 107) es del 55% — una distribución estable que no sigue los picos de inversión publicitaria.</p>
     </div>
   </div>
 </div>
@@ -148,9 +154,11 @@
   <div class="grid2">
     <div>
       <canvas id="chProductos"></canvas>
+      <p class="chart-note"><em>Nota.</em> Auto Tradicional representa solo el 4% de las pólizas vendidas pero genera el 13% del revenue — una sola póliza Tradicional equivale en valor a 3.3 pólizas KM.</p>
     </div>
     <div>
       <canvas id="chRevenueMes"></canvas>
+      <p class="chart-note"><em>Nota.</em> Marzo registró el mayor revenue del año ($21,590) con una de las menores inversiones del primer semestre ($3,809) — la brecha más amplia entre ventas e inversión del año.</p>
     </div>
   </div>
   <div class="grid3" style="margin-top:16px">
@@ -166,6 +174,7 @@
   <div class="section-title">El sitio recibió 452,146 visitas en 2025 — el tráfico de septiembre en adelante triplicó al del primer semestre</div>
   <div class="section-sub">Google Analytics 4 registra cada visita al sitio web. Permite ver si la publicidad realmente llevó personas al sitio y en qué meses hubo más actividad. Los datos de enero comienzan el día 23 (el sistema se activó ese día).</div>
   <canvas id="chGA4"></canvas>
+  <p class="chart-note"><em>Nota.</em> El segundo semestre (julio–diciembre) concentró el 72% de todas las visitas del año con menor inversión publicitaria que el primero — señal de que el canal orgánico y de búsqueda ganó peso progresivamente a lo largo del año.</p>
 </div>
 
 <!-- SECCIÓN 5: BÚSQUEDAS ORGÁNICAS -->
@@ -176,6 +185,7 @@
   <div class="grid2">
     <div>
       <canvas id="chGSC"></canvas>
+      <p class="chart-note"><em>Nota.</em> La posición promedio 4.2 indica que el sitio aparece en el primer resultado de la primera página de Google — aun así, solo 1 de cada 22 personas que ven el resultado hace clic, lo que apunta a una oportunidad en el título y descripción de la página.</p>
     </div>
     <div style="display:flex;flex-direction:column;justify-content:center;gap:12px">
       <div class="mini-stat"><div class="mini-stat-val">58,978</div><div class="mini-stat-label">Apariciones en resultados de Google</div></div>
